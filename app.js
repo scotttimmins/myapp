@@ -3,9 +3,13 @@ port = process.env.PORT;
 var express = require('express');
 var app = express();
 
+/*
 const express = require('express');
-const exphbs = require('express-handlebars');
+*/
+var exphbs = require('express-handlebars');
+/*
 const app = express();
+*/
 
 
 // Register Handlebars view engine
