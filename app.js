@@ -15,7 +15,7 @@ app.set('view engine', 'handlebars');
 /**/app.use(express.static(__dirname + '/views'));
 
 app.get('/', (req, res) => {
-    res.render('dashboard');
+    res.render('dashboard', {name: 'Bex'});
 });
 
 app.listen(port, function () {
