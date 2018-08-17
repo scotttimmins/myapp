@@ -1,19 +1,12 @@
 port = process.env.PORT;
 
 var express = require('express');
-var app = express();
-
-/*
-const express = require('express');
-*/
 var exphbs = require('express-handlebars');
-/*
-const app = express();
-*/
+var app = express();
 
 
 // Register Handlebars view engine
-app.engine('handlebars', exphbs());
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 // Use Handlebars view engine
 app.set('view engine', 'handlebars');
 
