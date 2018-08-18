@@ -50,7 +50,7 @@ app.get('/auth/google/callback',
     passport.authenticate('google', {failureRedirect:'/'}),
     (req, res) => {
         req.session.token = req.user.token;
-        res.redirect('/dashboard', {name: 'Bex', bex_monzo: '52.06', peet_monzo: '66.43', bex_firstdirect: '150.23', peet_lloyds: '9,998.12', bex_barclaycard: '-500', peet_mbna1: '-9,786.99'});
+        res.redirect('dashboard', {name: 'Bex', bex_monzo: '52.06', peet_monzo: '66.43', bex_firstdirect: '150.23', peet_lloyds: '9,998.12', bex_barclaycard: '-500', peet_mbna1: '-9,786.99'});
     }
 );
 
