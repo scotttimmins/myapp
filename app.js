@@ -13,11 +13,11 @@ app.use(cookieSession({
     keys: ['123']
 }));
 app.use(cookieParser());
-app.use(passport.session());
 
 
 auth(passport);
 app.use(passport.initialize());
+app.use(passport.session());
 
 // Register Handlebars view engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
