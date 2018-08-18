@@ -9,12 +9,10 @@ const auth = require('./auth');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 
-app.use(session({ secret: "cats" }));
-
 app.use(cookieParser());
 app.use(cookieSession({
     name: 'session',
-    keys: ['cats']
+    keys: ['123']
 }));
 
 
