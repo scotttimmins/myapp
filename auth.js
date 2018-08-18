@@ -9,7 +9,7 @@ module.exports = (passport) => {
     passport.use(new GoogleStrategy({
             clientID: 797266126678-p55b4276r50bgjv8cb3q3k3tv70f89s3.apps.googleusercontent.com,
             clientSecret: HPcpFZSyBeS3I11B8vprwLxc,
-            callbackURL: 'https://my-money-dashboard.herokuapp.com/dashboard',
+            callbackURL: '/dashboard',
         },
         (token, refreshToken, profile, done) => {
             return done(null, {
