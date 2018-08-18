@@ -11,11 +11,12 @@ const cookieSession = require('cookie-session');
 
 app.use(session({ secret: "cats" }));
 
+app.use(cookieParser());
 app.use(cookieSession({
     name: 'session',
     keys: ['cats']
 }));
-app.use(cookieParser());
+
 
 
 auth(passport);
