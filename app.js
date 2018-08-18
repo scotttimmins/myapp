@@ -14,7 +14,7 @@ const cookieSession = require('cookie-session');
 
 app.use(express.static(__dirname + '/public'));
 
-app.use(cookieParser());
+app.use(cookieParser(sessionKey));
 app.use(cookieSession({
     name: 'session',
     keys: [sessionKey]  // key to sign/verify cookies
