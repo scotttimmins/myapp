@@ -3,8 +3,10 @@ port = process.env.PORT;
 const express = require('express');
 const exphbs = require('express-handlebars');
 const app = express();
-passport = require('passport'), auth = require('./auth');
-cookieParser = require('cookie-parser'), cookieSession = require('cookie-session');
+const passport = require('passport');
+const auth = require('./auth');
+const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 
 app.use(cookieSession({
     name: 'session',
@@ -28,7 +30,7 @@ server.use(express.static(__dirname + '/public'));
 
 
 
-app.get('/public', (req, res) => {
+app.get('/', (req, res) => {
     if (req.session.token) {
         res.cookie('token', req.session.token);
         res.json({
