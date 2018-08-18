@@ -5,6 +5,7 @@ console.log('read in client_ID ' +client_ID)
 
 
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 module.exports = (passport) => {
     passport.serializeUser((user, done) => {
         done(null, user);
@@ -15,7 +16,7 @@ module.exports = (passport) => {
     passport.use(new GoogleStrategy({
             clientID: client_ID,
             clientSecret: client_Secret,
-            callbackURL: '/',
+            callbackURL: '/auth/google/callback',
         },
         (token, refreshToken, profile, done) => {
         console.log("Authenticated USer:"+ token);
