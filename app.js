@@ -99,7 +99,7 @@ app.get('/logout', (req, res) => {
 
 app.get('/' , (req, res) => {
     console.log("in get(/)");
-    console.log("Request: " +req)
+    console.log("Request: " +req.isAuthenticated())
     if (!req.isAuthenticated()) {
         console.log("redirecting to logon page");
         return res.redirect('/login.html')
