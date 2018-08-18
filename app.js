@@ -70,23 +70,23 @@ app.get('/logout', (req, res) => {
     res.redirect('/public');
 });
 
-/*
-app.get('/', (req, res) => {
-    res.render('index',);
-});
-*/
 
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        console.log("Is authenticated, going to render dashboard");
-        return next();
-    }
-    res.redirect('/login.html')
-}
+//
+// function ensureAuthenticated(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         console.log("Is authenticated, going to render dashboard");
+//         return next();
+//     }
+//     res.redirect('/login.html')
+// }
 
 
 app.get('/', ensureAuthenticated, (req, res) => {
-    //setSessionCookie(req, res);
+    console.log("in get(/)");
+    if (!req.isAuthenticated()) {
+        console.log("redirecting to logon page");
+        return res.redirect('/login.html')
+    }
     console.log("About to render dashboard");
     res.render('dashboard', {name: 'Bex', bex_monzo: '52.06', peet_monzo: '66.43', bex_firstdirect: '150.23', peet_lloyds: '9,998.12', bex_barclaycard: '-500', peet_mbna1: '-9,786.99'});
 });
