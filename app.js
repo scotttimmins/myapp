@@ -4,6 +4,8 @@ sessionKey = process.env.SESSION_KEY
 const express = require('express');
 const exphbs = require('express-handlebars');
 var session  = require('express-session');
+var cors = require('cors');
+
 
 const app = express();
 const passport = require('passport');
@@ -13,6 +15,7 @@ const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 
 app.use(express.static(__dirname + '/public'));
+app.use(cors());
 
 app.use(cookieParser(sessionKey));
 app.use(cookieSession({
