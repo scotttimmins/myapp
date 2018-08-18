@@ -45,7 +45,6 @@ function setSessionCookie(req, res) {
 
 
 app.get('/auth/google', passport.authenticate('google', {
-    console.log("Doing googly passport thingy");
     scope: ['https://www.googleapis.com/auth/userinfo.profile']
 }));
 
