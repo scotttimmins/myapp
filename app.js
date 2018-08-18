@@ -27,7 +27,7 @@ app.use(session({
         return uuid() // use UUIDs for session IDs
     },
     secret: sessionKey,
-    resave: false,
+    resave: true,
     saveUninitialized: true
 }))
 
