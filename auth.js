@@ -1,6 +1,7 @@
 client_ID = process.env.CLIENT_ID;
 client_Secret = process.env.CLIENT_SECRET;
 
+console.log('read in client_ID ' +client_ID)
 
 
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
