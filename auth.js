@@ -8,9 +8,11 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 module.exports = (passport) => {
     passport.serializeUser((user, done) => {
+        console.log('Serialising user'+user);
         done(null, user);
     });
     passport.deserializeUser((user, done) => {
+        console.log('Deserialising user');
         done(null, user);
     });
     passport.use(new GoogleStrategy({
