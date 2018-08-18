@@ -2,6 +2,7 @@ port = process.env.PORT;
 
 const express = require('express');
 const exphbs = require('express-handlebars');
+var session  = require('express-session');
 const app = express();
 const passport = require('passport');
 const auth = require('./auth');
@@ -81,7 +82,7 @@ app.get('/logout', (req, res) => {
 // }
 
 
-app.get('/', (req, res) => {
+app.get('/' , (req, res) => {
     console.log("in get(/)");
     if (!req.isAuthenticated()) {
         console.log("redirecting to logon page");
