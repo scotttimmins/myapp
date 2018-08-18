@@ -28,7 +28,7 @@ server.use(express.static(__dirname + '/public'));
 
 
 
-app.get('/', (req, res) => {
+app.get('/public', (req, res) => {
     if (req.session.token) {
         res.cookie('token', req.session.token);
         res.json({
