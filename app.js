@@ -77,13 +77,17 @@ app.get('/', (req, res) => {
 */
 
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
+    if (req.isAuthenticated()) {
+        console.log("Is authenticated, going to render dashboard");
+        return next();
+    }
     res.redirect('/login.html')
 }
 
 
-app.get('/', ensureAuthenticated, (req, res, next) => {
+app.get('/', ensureAuthenticated, (req, res) => {
     //setSessionCookie(req, res);
+    console.log("About to render dashboard");
     res.render('dashboard', {name: 'Bex', bex_monzo: '52.06', peet_monzo: '66.43', bex_firstdirect: '150.23', peet_lloyds: '9,998.12', bex_barclaycard: '-500', peet_mbna1: '-9,786.99'});
 });
 
