@@ -13,6 +13,7 @@ app.use(cookieSession({
     keys: ['123']
 }));
 app.use(cookieParser());
+app.use(passport.session());
 
 
 auth(passport);
