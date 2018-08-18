@@ -3,6 +3,29 @@ port = process.env.PORT;
 const express = require('express');
 const exphbs = require('express-handlebars');
 const app = express();
+passport = require('passport'),
+    auth = require('./auth');
+
+auth(passport);
+app.use(passport.initialize());
+
+
+app.get('/', (req, res) => {
+    res.json({
+        status: 'session cookie not set'
+    });
+});
+
+
+app.get('/auth/google', passport.authenticate('google', {
+    scope: ['https://www.googleapis.com/auth/userinfo.profile']
+}));
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        failureRedirect: '/'
+    }),
+    (req, res) => {}
+);
 
 
 // Register Handlebars view engine
@@ -12,29 +35,6 @@ app.set('view engine', 'handlebars');
 
 
 app.use(express.static(__dirname + '/public'));
-
-
-
-const GoogleStrategy = require('passport-google-    oauth').OAuth2Strategy;
-module.exports = (passport) => {
-    passport.serializeUser((user, done) => {
-        done(null, user);
-    });
-    passport.deserializeUser((user, done) => {
-        done(null, user);
-    });
-    passport.use(new GoogleStrategy({
-        clientID: 797266126678-p55b4276r50bgjv8cb3q3k3tv70f89s3.apps.googleusercontent.com,
-        clientSecret: HPcpFZSyBeS3I11B8vprwLxc,
-        callbackURL: 'https://my-money-dashboard.herokuapp.com/dashboard',
-},
-    (token, refreshToken, profile, done) => {
-        return done(null, {
-            profile: profile,
-            token: token
-        });
-    }));
-};
 
 
 
