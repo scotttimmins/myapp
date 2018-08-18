@@ -1,33 +1,47 @@
 port = process.env.PORT;
+sessionKey = process.env.SESSION_KEY
 
 const express = require('express');
 const exphbs = require('express-handlebars');
 var session  = require('express-session');
+
 const app = express();
 const passport = require('passport');
+const uuid = require('uuid/v4')
 const auth = require('./auth');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 
+app.use(express.static(__dirname + '/public'));
+
 app.use(cookieParser());
 app.use(cookieSession({
     name: 'session',
-    keys: ['123']
+    keys: [sessionKey]  // key to sign/verify cookies
 }));
+
+app.use(session({
+    genid: (req) => {
+        console.log('Inside the session middleware')
+        console.log(req.sessionID)
+        return uuid() // use UUIDs for session IDs
+    },
+    secret: sessionKey,
+    resave: false,
+    saveUninitialized: true
+}))
 
 
 
 auth(passport);
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 // Register Handlebars view engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 // Use Handlebars view engine
 app.set('view engine', 'handlebars');
 
-
-app.use(express.static(__dirname + '/public'));
 
 
 function setSessionCookie(req, res) {
