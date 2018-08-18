@@ -15,9 +15,10 @@ module.exports = (passport) => {
     passport.use(new GoogleStrategy({
             clientID: client_ID,
             clientSecret: client_Secret,
-            callbackURL: '/dashboard',
+            callbackURL: '/',
         },
         (token, refreshToken, profile, done) => {
+        console.log("Authenticated USer:"+ token);
             return done(null, {
                 profile: profile,
                 token: token
