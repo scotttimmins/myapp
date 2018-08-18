@@ -1,3 +1,8 @@
+client_ID = process.env.CLIENT_ID;
+client_Secret = process.env.CLIENT_SECRET;
+
+
+
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 module.exports = (passport) => {
     passport.serializeUser((user, done) => {
@@ -7,8 +12,8 @@ module.exports = (passport) => {
         done(null, user);
     });
     passport.use(new GoogleStrategy({
-            clientID: '797266126678-p55b4276r50bgjv8cb3q3k3tv70f89s3.apps.googleusercontent.com',
-            clientSecret: 'HPcpFZSyBeS3I11B8vprwLxc',
+            clientID: client_ID,
+            clientSecret: client_Secret,
             callbackURL: '/dashboard',
         },
         (token, refreshToken, profile, done) => {
