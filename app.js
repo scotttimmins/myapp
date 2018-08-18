@@ -81,7 +81,7 @@ app.get('/logout', (req, res) => {
 // }
 
 
-app.get('/', ensureAuthenticated, (req, res) => {
+app.get('/', (req, res) => {
     console.log("in get(/)");
     if (!req.isAuthenticated()) {
         console.log("redirecting to logon page");
