@@ -44,9 +44,9 @@ function setSessionCookie(req, res) {
 
 
 
-// app.get('/auth/google', passport.authenticate('google', {
-//     scope: ['https://www.googleapis.com/auth/userinfo.profile']
-// }));
+app.get('/auth/google', passport.authenticate('google', {
+     scope: ['https://www.googleapis.com/auth/userinfo.profile']
+}));
 
 
 app.post('/login', passport.authenticate('google', { successRedirect: '/',
@@ -76,8 +76,13 @@ app.get('/', (req, res) => {
 });
 */
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/login')
+}
 
-app.get('/', (req, res) => {
+
+app.get('/', ensureAuthenticated, (req, res, next) => {
     //setSessionCookie(req, res);
     res.render('dashboard', {name: 'Bex', bex_monzo: '52.06', peet_monzo: '66.43', bex_firstdirect: '150.23', peet_lloyds: '9,998.12', bex_barclaycard: '-500', peet_mbna1: '-9,786.99'});
 });
