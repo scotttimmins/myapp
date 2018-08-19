@@ -114,7 +114,7 @@ app.get('/' , (req, res) => {
 
 app.get('/login', (req, res) => {
     console.log('in login handler');
-    res.render('login', {googleClientId: client_ID});
+    res.render('login', {googleClientId: client_ID, layout: 'basic'});
 });
 
 
