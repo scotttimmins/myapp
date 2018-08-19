@@ -18,7 +18,7 @@ module.exports = (passport) => {
     passport.use(new GoogleStrategy({
             clientID: client_ID,
             clientSecret: client_Secret,
-            callbackURL: '/auth/google/callback',
+            callbackURL: 'https://my-money-dashboard.herokuapp.com/auth/google/callback',
         },
         (token, refreshToken, profile, done) => {
         console.log("Authenticated USer:"+ token);
