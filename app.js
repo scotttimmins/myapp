@@ -97,7 +97,7 @@ app.get('/logout', (req, res) => {
 //         console.log("Is authenticated, going to render dashboard");
 //         return next();
 //     }
-//     res.redirect('/login.handlebars')
+//     res.redirect('/login')
 // }
 
 
@@ -106,7 +106,7 @@ app.get('/' , (req, res) => {
     console.log("Request: " +req.isAuthenticated())
     if (!req.isAuthenticated()) {
         console.log("redirecting to logon page");
-        return res.redirect('/login.handlebars')
+        return res.redirect('/login')
     }
     console.log("About to render dashboard");
     res.render('dashboard', {name: 'Bex', bex_monzo: '52.06', peet_monzo: '66.43', bex_firstdirect: '150.23', peet_lloyds: '9,998.12', bex_barclaycard: '-500', peet_mbna1: '-9,786.99'});
