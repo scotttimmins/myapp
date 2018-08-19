@@ -1,5 +1,6 @@
 port = process.env.PORT;
-sessionKey = process.env.SESSION_KEY
+sessionKey = process.env.SESSION_KEY;
+client_ID = process.env.CLIENT_ID;
 
 const express = require('express');
 const exphbs = require('express-handlebars');
@@ -96,7 +97,7 @@ app.get('/logout', (req, res) => {
 //         console.log("Is authenticated, going to render dashboard");
 //         return next();
 //     }
-//     res.redirect('/login.html')
+//     res.redirect('/login.handlebars')
 // }
 
 
@@ -105,10 +106,15 @@ app.get('/' , (req, res) => {
     console.log("Request: " +req.isAuthenticated())
     if (!req.isAuthenticated()) {
         console.log("redirecting to logon page");
-        return res.redirect('/login.html')
+        return res.redirect('/login.handlebars')
     }
     console.log("About to render dashboard");
     res.render('dashboard', {name: 'Bex', bex_monzo: '52.06', peet_monzo: '66.43', bex_firstdirect: '150.23', peet_lloyds: '9,998.12', bex_barclaycard: '-500', peet_mbna1: '-9,786.99'});
+});
+
+app.get('/login', (req, res) => {
+    console.log('in login handler');
+    res.render('login', {googleClientId: client_ID});
 });
 
 
